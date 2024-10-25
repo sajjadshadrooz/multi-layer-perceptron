@@ -11,15 +11,17 @@ test_size_precent = int(input("Please enter precent of test size: "))
 train_x, train_y, test_x, test_y = preprocess_data(data_frame, target_columns, test_size_precent) 
 
 hidden_layers = input("Please enter hidden layers: ").split(" ")
-layers = [len(train_x.columns)].append(hidden_layers).append(len(train_y.columns))
+layers = [len(train_x.columns)]
+layers.extend([int(i) for i in hidden_layers])
+layers.append(len(train_y.columns))
 
 learning_rate = float(input("Please enter learning rate: "))
 activation_function = input("Please enter activation function: ")
 model = MLP(layers, learning_rate, activation_function)
 
-epochs = int(input("Please enter learning rate: "))
+epochs = int(input("Please enter epochs: "))
 model.train(train_x, train_y, epochs)
 
-predictions = model.predict(test_x)
-print("Predictions:", predictions)
-print("True labels:", test_y)
+predictions = model.predict(train_x)
+print("Predictions:", predictions.flatten())
+print("True labels:", train_y)

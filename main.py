@@ -22,6 +22,4 @@ model = MLP(layers, learning_rate, activation_function)
 epochs = int(input("Please enter epochs: "))
 model.train(train_x, train_y, epochs)
 
-predictions = model.predict(train_x)
-print("Predictions:", predictions.flatten())
-print("True labels:", train_y)
+model.predict(train_x, train_y)

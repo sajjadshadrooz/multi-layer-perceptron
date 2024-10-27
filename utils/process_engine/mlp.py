@@ -1,7 +1,5 @@
 from .activation_functions import *
-
 import numpy as np
-import pandas as pd
 
 
 class MLP:
@@ -18,7 +16,6 @@ class MLP:
             self.weights.append(weight_matrix)
             self.biases.append(bias_vector)
 
-    
     def apply_activation_function(self, x):
         match self.activation_function:
             case 'sigmoid':
@@ -86,10 +83,12 @@ class MLP:
             grad_weights, grad_biases = self.backward(y, activations, z_values)
             self.update_weights(grad_weights, grad_biases)
             
-            if epoch % 100 == 0:
-                loss = np.mean((y - activations[-1]) ** 2)
-                print(f"Epoch {epoch}, Loss: {loss}")
+           
+            loss = np.mean((y - activations[-1]) ** 2)
+            print(f"Epoch {epoch}, Loss: {loss}")
 
-    def predict(self, X):
+    def predict(self, X, Y):
         activations, _ = self.forward(X)
-        return np.where(activations[-1] >= 0.546, 1, 0)
+        loss = np.mean((Y - activations[-1]) ** 2)
+        print(f'Loss: {loss}')
+        print("Predictions:", np.where(activations[-1] >= 0.5, 1, 0).flatten())

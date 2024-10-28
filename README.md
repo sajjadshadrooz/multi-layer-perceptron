@@ -1,4 +1,5 @@
 # multi-layer-perceptron
+<img src="https://www.go-rbcs.com/wp-content/uploads/2019/06/simple-and-deep-neural-networks.png" />
 MLP stands for Multilayer Perceptron, which is a type of artificial neural network. Here are some key characteristics of MLPs:
 
 Architecture: MLPs consist of multiple layers of nodes (neurons):
